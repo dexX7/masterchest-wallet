@@ -232,6 +232,14 @@ Module Module1
         Form1.bexchange.ForeColor = Color.FromArgb(100, 100, 100)
     End Sub
 
+    'workaround: focus version label, if input box is left via click on form
+    Public Sub tryunfocusinputs()
+        If Form1.txtsendamount.Focused Then
+            'version label
+            Form1.Label79.Focus()
+        End If
+    End Sub
+
     '////////////////////
     '///PANEL ACTIVATIONS
     '////////////////////

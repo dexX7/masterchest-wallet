@@ -42,6 +42,7 @@ Public Class Form1
     End Sub
     Private Sub Form1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles MyBase.MouseDown, RectangleShape1.MouseDown, psetup.MouseDown, pwelcome.MouseDown, pcurrencies.MouseDown, paddresses.MouseDown, pdebug.MouseDown, poverview.MouseDown, psend.MouseDown, psettings.MouseDown
         If e.Button = MouseButtons.Left Then
+            tryunfocusinputs()
             dgvaddresses.CurrentCell = Nothing
             dgvaddresses.ClearSelection()
             dgvhistory.CurrentCell = Nothing
@@ -2396,6 +2397,20 @@ Public Class Form1
             End If
         End If
 
+    End Sub
+
+    Private Sub txtsendamount_Enter(sender As Object, e As EventArgs) Handles txtsendamount.Enter
+        If txtsendamount.Text = "0.00000000" Then
+            txtsendamount.Text = ""
+        End If
+    End Sub
+
+    Private Sub txtsendamount_Leave(sender As Object, e As EventArgs) Handles txtsendamount.Leave
+        If txtsendamount.Text = "" Then
+            txtsendamount.Text = "0.00000000"
+        Else
+            txtsendamount.Text = Val(txtsendamount.Text).ToString("######0.00000000")
+        End If
     End Sub
 
     Private Sub bback_Click(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles bback.MouseUp
